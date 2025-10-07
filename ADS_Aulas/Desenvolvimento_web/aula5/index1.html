@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Simples</title>
+</head>
+<body>
+    <h2>Calculadora</h2>
+    
+    <input type="text" id="display" style="width: 200px; padding: 5px; font-size: 16px;" placeholder="Digite a expressão">
+    <br><br>
+    
+    <button onclick="calculate()">Calcular (=)</button>
+    <button onclick="clearDisplay()">Limpar (C)</button>
+    
+    <br><br>
+    <div id="resultado"></div>
+
+    <script>
+        const display = document.getElementById('display');
+        const resultado = document.getElementById('resultado');
+
+        // Foca no input quando a página carrega
+        display.focus();
+
+        // Permite calcular pressionando Enter
+        display.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+
+        function calculate() {
+            try {
+                // Substitui × por * para o cálculo
+                let expression = display.value.replace(/×/g, '*');
+                
+                // Remove espaços em branco
+                expression = expression.replace(/\s+/g, '');
+                
+                // Valida a expressão
+                if (!expression) {
+                    resultado.innerHTML = '<span style="color: red;">Digite uma expressão</span>';
+                    return;
+                }
+
+                // Verifica se há caracteres inválidos
+                if (!/^[0-9+\-*/().]+$/.test(expression)) {
+                    resultado.innerHTML = '<span style="color: red;">Caracteres inválidos na expressão</span>';
+                    return;
+                }
+
+                // Calcula o resultado
+                const result = eval(expression);
+                
+                // Exibe o resultado
+                resultado.innerHTML = `<strong>Resultado: ${result}</strong>`;
+                
+            } catch (error) {
+                resultado.innerHTML = '<span style="color: red;">Erro na expressão</span>';
+            }
+        }
+
+        function clearDisplay() {
+            display.value = '';
+            resultado.innerHTML = '';
+            display.focus();
+        }
+    </script>
+
+    <h3>Como usar:</h3>
+    <ul>
+        <li><strong>Soma:</strong> 10 + 5</li>
+        <li><strong>Subtração:</strong> 10 - 5</li>
+        <li><strong>Multiplicação:</strong> 10 * 5 ou 10 × 5</li>
+        <li><strong>Divisão:</strong> 10 / 5</li>
+        <li><strong>Expressões complexas:</strong> (10 + 5) * 2</li>
+    </ul>
+    <p><strong>Dica:</strong> Pressione Enter para calcular</p>
+</body>
+</html>

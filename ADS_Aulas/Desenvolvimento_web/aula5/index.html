@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Simples</title>
+</head>
+<body>
+    <input type="text" id="calc" placeholder="Ex: 10 + 5" style="width: 150px">
+    <button onclick="calcular()">=</button>
+    <button onclick="document.getElementById('calc').value=''">C</button>
+    <div id="res"></div>
+
+    <script>
+        function calcular() {
+            const input = document.getElementById('calc').value;
+            try {
+                const resultado = eval(input);
+                document.getElementById('res').innerHTML = "Resultado: " + resultado;
+            } catch {
+                document.getElementById('res').innerHTML = "Erro!";
+            }
+        }
+        
+        // Calcular com Enter
+        document.getElementById('calc').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calcular();
+        });
+    </script>
+</body>
+</html>

@@ -20,7 +20,7 @@ def estatisticas():
     print(f"Aluno com maior média: {nome_maior}")
 
 while True:
-    print("\n------SISTEMA DE CONTROLE DE NOTAS ------")
+    print("\n------ SISTEMA DE CONTROLE DE NOTAS ------")
     print("1 - Cadastrar aluno")
     print("2 - Listar alunos")
     print("3 - Exibir estatísticas")
@@ -57,7 +57,7 @@ while True:
 
     elif opcao == "4":
         estatisticas()
-        print("Saindo...")
+        print("Encerrando programa.")
         break
 
     else:
